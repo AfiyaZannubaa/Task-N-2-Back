@@ -19,15 +19,27 @@ async function Routes(fastify, opts){
 
     fastify.route({
         method: "POST",
-        url: "/createTask",
+        url: "/createTask/:id",
         handler: Task.createTask,
 
     })
 
     fastify.route({
         method: "GET",
-        url: "/tasks",
+        url: "/tasks/:id",
         handler: Task.fetchTask
+    })
+
+    fastify.route({
+        method: "DELETE",
+        url: "/tasks/delete/:id",
+        handler: Task.deleteTask
+    })
+
+    fastify.route({
+        method: "PUT",
+        url: "/editTasks/:id",
+        handler: Task.update
     })
 
    

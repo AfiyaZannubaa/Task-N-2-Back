@@ -11,22 +11,31 @@ const TaskSchema = new Schema({
         required: true
     },
 
-    Department: {
+    date:{
+        type: Date,
+        required: true
+
+    },
+
+    department: {
         type: String,
         required: true
 
     },
 
-    Tasks: [String],
+    task: {
+        type: String,
+        required: true
+    },
     
-    timeTaken: {
+    time: {
         type: Number,
         required: true
     },
 
-    taskStatus: {
+    status: {
         type: String,
-        default: 'created',
+        // default: 'created',
         required: true
     },
 
