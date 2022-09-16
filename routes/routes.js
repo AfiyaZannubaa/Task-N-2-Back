@@ -5,28 +5,25 @@ const Task = require('../controllers/Task')
 
 async function Routes(fastify, opts){
 
-    fastify.route({
-        method: "POST",
-        url: "/employee/register",
-        handler: employees.register
+    fastify.addHook("onRequest", async (request, reply) =>{
+        try{
+            console.log("test")
+            await request.jwtVerify()
+        }catch(err){
+            reply.send(err);
+        }
     })
 
     fastify.route({
         method: "POST",
-        url: "/employee/login",
-        handler: employees.login
-    })
-
-    fastify.route({
-        method: "POST",
-        url: "/createTask/:id",
+        url: "/createTask",
         handler: Task.createTask,
 
     })
 
     fastify.route({
         method: "GET",
-        url: "/tasks/:id",
+        url: "/tasks",
         handler: Task.fetchTask
     })
 

@@ -2,9 +2,17 @@ const fastify = require('fastify')({logger: true})
 const mongoose = require("mongoose")
 
 
+fastify.register(require('fastify-jwt'), {
+    secret: 'supersecret'
+  })
+  
+
+
+
 
 const PORT = 5000
 
+fastify.register(require('./routes/AuthRoute'))
 fastify.register(require('./routes/routes'))
 
 

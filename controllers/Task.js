@@ -37,16 +37,7 @@ createTask: async function(req,res){
         await task.save();
         res.status(200).send(task);
         
-    //get the time input - set it as to be a number - use if else to set the limit and message.
-
-    const timer = await Employee.findOne({ time: req.body.time});
-    timer = Number(timer);
-    if(timer){
-        
-        res.status(200).send({message: "Working hours exceeded!"});
-    } else{
-        res.status(404).send({message: "Working hours normal!"});
-    }
+   
 
   
 
@@ -59,7 +50,8 @@ createTask: async function(req,res){
 
 fetchTask: async function (req,res) {
     try{
-        const task = await Task.find();
+     
+        const task = await Task.find({userId: req.user.employee._id});
         res.status(200).send(task);
 
     }catch(e){

@@ -28,10 +28,12 @@ module.exports = {
             
             if(employee){
                 const check = await bcrypt.compare(req.body.password, employee.password);
-                console.log(check)
+                // console.log(check)
                 if(check){
                     const {password, ...rest} = employee.toObject();
-                    res.send({message: "Employee Login Is Successful", employee: rest });
+                    const token = await res.jwtSign({employee: rest})
+                    console.log(token)
+                    res.send({message: "Employee Login Is Successful", token: token });
                 }else{
                     res.status(401).send({message: "Invalid Password"});
                 }
