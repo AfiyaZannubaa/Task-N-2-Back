@@ -36,13 +36,7 @@ createTask: async function(req,res){
         const task = new Task(payload);
         await task.save();
         res.status(200).send(task);
-        
    
-
-  
-
-            
-        
     }catch(e){
         res.status(500).send(e)
     }
