@@ -24,13 +24,13 @@ module.exports = {
 
     login: async function (req,res){
         try{
-            const employee = await Employee.findOne({ email: req.body.email});
+            const employee = await Employee.findOne({ email: req.body.email}).lean();
             
             if(employee){
                 const check = await bcrypt.compare(req.body.password, employee.password);
                 // console.log(check)
                 if(check){
-                    const {password, ...rest} = employee.toObject();
+                    const {password, ...rest} = employee;
                     const token = await res.jwtSign({employee: rest})
                     console.log(token)
                     res.send({message: "Employee Login Is Successful", token: token });

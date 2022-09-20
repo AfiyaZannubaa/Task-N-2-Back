@@ -32,7 +32,7 @@ module.exports = {
 createTask: async function(req,res){
     try{
         let payload = req.body;
-        payload.userId = req.params.id;
+        payload.userId = req.user.employee._id
         const task = new Task(payload);
         await task.save();
         res.status(200).send(task);

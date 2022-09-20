@@ -1,14 +1,12 @@
 const fastify = require('fastify')({logger: true})
 const mongoose = require("mongoose")
+const webpush = require('web-push');
+const path = require('path');
 
 
 fastify.register(require('fastify-jwt'), {
     secret: 'supersecret'
   })
-  
-
-
-
 
 const PORT = 5000
 
