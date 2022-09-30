@@ -1,9 +1,24 @@
 const employees = require("../controllers/employees");
 const { register, login } = require("../controllers/employees");
-const Employee = require("../models/Employee");
-const Task = require('../controllers/Task')
+const Admincontrol = require("../controllers/Admincontrol");
 
 async function AuthRoute(fastify, opts){
+
+     //Admin routes-------------------------------------
+     fastify.route({
+        method: "POST",
+        url: "/admin/login",
+        handler: Admincontrol.login
+    })
+
+    fastify.route({
+        method: "POST",
+        url: "/admin/register",
+        handler: Admincontrol.register
+    })
+
+
+    //---------------------------------------------------
 
     fastify.route({
         method: "POST",
@@ -16,6 +31,9 @@ async function AuthRoute(fastify, opts){
         url: "/employee/login",
         handler: employees.login
     })
+
+
+   
 
     
 

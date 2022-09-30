@@ -1,6 +1,6 @@
 const {Schema, model} = require('mongoose');
 
-const employeeSchema = new Schema({
+const AdminSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -9,7 +9,6 @@ const employeeSchema = new Schema({
         type: String,
         required: true,
         unique: true,
-        // sparse:true
         
     },
     password: {
@@ -19,6 +18,6 @@ const employeeSchema = new Schema({
     }
 });
 
-const Employee = model('Employee', employeeSchema);
+const Admin = model('Admin', AdminSchema);
 
-module.exports = Employee;
+module.exports = Admin;

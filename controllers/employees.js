@@ -31,9 +31,11 @@ module.exports = {
                 // console.log(check)
                 if(check){
                     const {password, ...rest} = employee;
+
                     const token = await res.jwtSign({employee: rest})
                     console.log(token)
                     res.send({message: "Employee Login Is Successful", token: token });
+                    
                 }else{
                     res.status(401).send({message: "Invalid Password"});
                 }

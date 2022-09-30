@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const{Schema, model} = mongoose
 
-const TaskSchema = new Schema({
+const ListSchema = new Schema({
     
     
     userId: {
@@ -10,39 +10,41 @@ const TaskSchema = new Schema({
         ref: "Employee",
         required: true
     },
-
-    date:{
+    AssignedDate:{
         type: Date,
         required: true
 
     },
-
+    EmployeeName: {
+        type: String,
+        required: true,
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        sparse:true
+        
+    },
     department: {
         type: String,
         required: true
 
     },
-
     task: {
         type: String,
         required: true
     },
+    DueDate:{
+        type: Date,
+        required: true
+
+    }
+
     
-    time: {
-        type: Number,
-        max: 480,
-        required: true
-    },
-
-    status: {
-        type: String,
-        // default: 'created',
-        required: true
-    },
-
 
 });
 
-const Task = model("Task", TaskSchema);
+const List = model("List", ListSchema);
 
-module.exports = Task;
+module.exports = List;

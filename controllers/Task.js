@@ -44,8 +44,12 @@ createTask: async function(req,res){
 
 fetchTask: async function (req,res) {
     try{
-     
-        const task = await Task.find({userId: req.user.employee._id});
+        let date = new Date(req.query.date)
+        let e = date-(date % 86400000);
+
+        console.log(new Date(e))
+        const task = await Task.find({userId: req.user.employee._id, date: new Date(e)});
+
         res.status(200).send(task);
 
     }catch(e){
